@@ -39,7 +39,7 @@ class GenreSerializer(serializers.Serializer):
     def validate_name(self, value):
         genres = Genre.objects.all()
         if self.instance:
-            genres.exclude(id=self.instance.id)
+            genres = genres.exclude(id=self.instance.id)
         if genres.filter(name=value).exists():
             raise serializers.ValidationError("Genre already exists")
         return value
