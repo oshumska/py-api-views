@@ -32,7 +32,7 @@ class CinemaHall(models.Model):
 
     def __str__(self):
         num_seats = self.rows * self.seats_in_row
-        return f"Cinema Hall:{self.name}. Amount of seats: {num_seats} "
+        return f"Cinema Hall:{self.name}. Amount of seats: {num_seats}"
 
 
 class Movie(models.Model):

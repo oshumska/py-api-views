@@ -37,11 +37,10 @@ class GenreSerializer(serializers.Serializer):
         return instance
 
     def validate_name(self, value):
-        if value is None:
-            raise serializers.ValidationError("Name is required")
-        if len(value) > 255:
-            raise serializers.ValidationError("Name is too long")
-        if Genre.objects.filter(name=value).exists():
+        genres = Genre.objects.all()
+        if self.instance:
+            genres.exclude(id=self.instance.id)
+        if genres.filter(name=value).exists():
             raise serializers.ValidationError("Genre already exists")
         return value
 
